@@ -1,0 +1,23 @@
+#******************************************************************************
+# Intro "pokan" tilemap generator script
+#******************************************************************************
+
+[Properties]
+#palette=pal/bssm_title_pal_mod.bin
+palette=rsrc_raw/pal/intro_pokan.bin
+dest=out/grp/intro_pokan.bin
+loadAddr=0x100
+#minTiles=0x185
+#maxTiles=0x185
+maxTiles=0x4E0
+#blacklist=360-363
+
+#******************************************************************************
+# Main layout
+#******************************************************************************
+
+[Tilemap00]
+source=rsrc/grp/intro_pokan.png
+dest=out/maps/intro_pokan.bin
+priority=0
+

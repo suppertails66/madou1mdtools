@@ -1,0 +1,179 @@
+
+
+
+//===========================================================
+// new stuff added for translation
+//===========================================================
+
+// new messages for respecting cait siths plurality
+
+//=======================================
+// capsule release prompt
+//=======================================
+
+#STARTSCRIPT(-1)
+
+[leftbox]
+// [buffer7char]が[br]
+// カプセルの中で[br]
+// ねむってるよ。
+//[buffer7char][br]
+//slept inside the Capsule.
+
+The [buffer7char][br]
+are sleeping[br]
+inside the[br]
+Capsule.
+[wait]
+
+// 逃がしてあげる？[br]
+// 　　はい[br]
+// 　　いいえ[br]
+Release the[br]
+monsters?[br]
+[space16px][space16px][space2px]Yes[br]
+[space16px][space16px][space2px]No
+//[promptA0]
+[prompt74]
+[kill]
+
+#ENDSCRIPT()
+#BREAK()
+
+//=======================================
+// released
+//=======================================
+
+#STARTSCRIPT(-1)
+
+[leftbox]
+// [buffer7char]は[br]
+// 元気よく[br]
+// そとに出た。
+//[buffer7char][br]
+//left the Capsule, eagerly.
+
+The [buffer7char][br]
+leave the[br]
+Capsule, eager to[br]
+please.
+[wait]
+
+[leftbox]
+// 「かえって[br]
+// いいよ」
+{You can go[br]
+now.}
+[wait]
+
+[leftbox]
+// [buffer7char]は[br]
+// さみしそうに[br]
+// さっていった。
+The [buffer7char][br]
+look sad, but[br]
+comply.
+[wait]
+
+[kill]
+
+#ENDSCRIPT()
+#BREAK()
+
+//=======================================
+// encounter message
+//=======================================
+
+#STARTSCRIPT(-1)
+
+[leftbox]
+// まものだ！
+Monsters!
+[end]
+
+#ENDSCRIPT()
+#BREAK()
+
+//=======================================
+// the hungry elephant's full name is
+// too long to display on the
+// item combining screen.
+// this is a shortened form used
+// exclusively for that menu.
+//=======================================
+
+#STARTSCRIPT(-1)
+
+// すいとる象
+Hungry Eleph.
+[kill]
+
+#ENDSCRIPT()
+#BREAK()
+
+//=======================================
+// amigo cait siths defeated in battle
+//=======================================
+
+#STARTSCRIPT(-1)
+
+[leftbox]
+// [buffer7char]は[br]
+// ばたんきゅー。
+The [buffer7char][br]
+are defeated.
+[autoend]
+
+#ENDSCRIPT()
+#BREAK()
+
+//=======================================
+// momomo's item storage shop needs
+// to print item names with a quote and
+// a comma on one line.
+// there is exactly one item in this
+// game whose name will not fit on
+// one line if accompanied by a quote
+// and a comma.
+// can you guess which one it is?
+//=======================================
+
+// depositing
+
+#STARTSCRIPT(-1)
+
+[closeleftbox]
+[rightbox]
+// 「[buffer7char][br]
+// あずかるのー」
+//{[buffer7char],[br]
+//okaaay.}
+
+{Fire Extingui-[br]
+sher, okaaay.}
+[wait]
+
+[end]
+
+#ENDSCRIPT()
+#BREAK()
+
+// withdrawing
+
+#STARTSCRIPT(-1)
+
+[closeleftbox]
+[rightbox]
+// 「[buffer7char][br]
+// わたすー」
+{Fire Extingui-[br]
+sher, heeere you[br]
+go.}
+[wait]
+
+[end]
+
+#ENDSCRIPT()
+#BREAK()
+
+

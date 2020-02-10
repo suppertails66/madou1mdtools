@@ -1,0 +1,555 @@
+
+text starts around $9E240?
+  - 9e264 = どこに[BR]セーブする？[BR]...
+ends around B2540?
+
+ROM
+  48c7e = table of initial states for script types?
+          2b ?
+          4b ?
+          1b ?
+          1b ?
+  0x00048D96 = *** OPCODE HANDLER TABLE ***
+               0x40 ops total
+  92bc8 = table of graphics load info for title screen?
+          sequence:
+            2b command?
+               0x8000 = ?
+               0xFFFF = terminator?
+            2b ???
+            2b target vram addr?
+  9e0f0 = pointer table to monster encounter scripts?
+          0x20 entries?
+          
+          battle start?
+          0x5C entries? or 0x48? or less???
+          which are not in strictly increasing order
+    - entry 0 = entry 1 = a2a74 = ????みどりぷよ[BR]「ぷよぷよ〜ん」
+    - entry 2 = a2a98 = ????あかぷよ[BR]「ん〜、[BR]ぷよ〜〜〜ん(HEART)」
+  0x9E170-0x9E193 = pointers to script offset tables
+    0x9E170 = pointer to offset table for arle damage taken messages
+    0x9E174 = pointer to offset table for enemy health level messages
+    ...
+  0x9E194-0x9E1F3? 0x9E203? 0x9E20F? = pointers to offset tables for battle messages
+                   for each enemy type?
+    0x9E194 = pointer to offset table for green puyo battle messages?
+    0x9E204 = pointer to offset table for arle messages?
+              repeated through 0x9E20F
+  0x9E1F4 = pointer to ? script
+  0x9E1F8 = pointer to ? script
+  0x9E1FC = pointer to ? offset table
+  0x9E200 = pointer to ? offset table
+  0x9E210 = offset table for various scripts
+  0xA5040-0xA505B = ? byte array
+  0xA505C-0xA50A3 = pointers to ??? offset tables to script data per floor??
+                    a50a4: a50a4-a50f9??  0x2b entries
+                    a6390
+                    a7eb2
+                    ...
+  script data at 0xA50FA-???
+  0xB063C = script offset table?
+  
+
+CODE
+  0x0000063A = subroutine that handles queued vdp operations at vblank?
+  0x00000A72 = queueDynDecmp
+               queues a pack for dynamic decompression distributed over
+               multiple frames
+               a2 = pack pointer
+  0x00000AE0 = called once per iteration of main loop; handles continuous
+               decompression of graphics (and data?)
+  0x00001122 = allocate a ??? slot from array at 0xFFC740?
+  0x0000119E = ?
+  0x0000122C = clear???AndSetObjHandler
+               same as setObjHandler, but clears word at (slot+0x24) first
+  0x00001236 = setObjHandler
+               call this with object slot pointer in A0, and the object's
+               handler routine address will be updated to point to the return
+               address of the call
+  0x0000123C = ?
+  0x00001622 = send object sprites to sprite table
+  0x00001856 = add sprite(s) to current sprite table buffer
+               A2 = srcptr -- number of sprites followed by base SAT entries
+                    for each sprite
+               d1 = base pattern??
+               d2 = base x
+               d3 = base y
+  ~26BA = ?
+  0x0000455A = initiate battle?
+               get monster script?
+  0x00008272 = copy monster name to dynamic print buffer
+  0x00011CC4 = rand (result is 32-bit)
+  0x00014618 = clearNametable
+               D0 = address
+               D1 = width - 1
+               D2 = height - 1
+               D5 = word value to clear with
+  0x00028DAA = useProbabilityJumpTable
+               takes a pointer in A2 to an FFFF-terminated table with entries
+               in this format:
+                 2b probability.
+                    if a randomly rolled word is less than this value,
+                    the code pointer will be jumped to.
+                    usually this will be some ascending pattern like
+                    0x3333, 0x6666, 0x9999...
+                    to give all options equal weight
+                 4b code pointer
+               one of the entries will be picked randomly according to the
+               given probabilities and jumped to.
+  0x00048C34 = queue a script
+                D0 = ?
+                D1 = ?
+                D2 = ?
+                A2 = script data srcaddr?
+  0x00048CA6 = alt script init?
+               for e.g. battle messages?
+               from e.g. 46a6
+  0x00048D20 = initial(?) script update routine
+  0x000491D6 = character literal print command handler
+  0x00049972 = terminate script?
+  0x00049992 = set up VDP write
+               interrupts should be disabled first!
+               D5 = address
+  0x00063470 = ?
+               called in script character literal handler.
+               possibly queues for transfer to vram?
+
+MEMORY
+  FF8516 = base VDP address for text window data?
+           e.g. C000
+  FF8568 = some enemy flags?
+           - bit 7 set if enemy defeated?
+           - bit 6 set when arle's victory animation should begin?
+  FF8570 = on title screen, 0x0001 if "present" option unlocked
+  0xFF86AA = number-to-text conversion buffer?
+             see script ops 11-13, 1E
+  FF86FA = script flag 1?
+           see script op 15
+           this and the following bytes seem to be used to signal to the hardcoded
+           game logic when specific events in the script have occurred,
+           so the text will remain synchronized.
+  FF86FB = script flag 2?
+           see script op 16
+           - script op 94 waits until this reaches a specific value before
+             continuing the script
+  FF86FC = script flag 3?
+           see script op 17
+  FF86FE = ?
+           a bit of this is set depending on a parameter to queueScript [0x00048C34]?
+           seems to indicate which "slot" the script targets?
+           - bit 0 = left box?
+           - bit 1 = right/map label?
+           - bit 2 = wide center box?
+  0xFF8A64 = linebreak "size" in nametable in bytes.
+             see op 30.
+  0xFF8EBB = index of active? inactive? sprite table buffer?
+  0xFF8EC0 = address of active? inactive? sprite table buffer?
+  0xFF8EDA = sprite table buffer 0?
+  0xFF915A = sprite table buffer 1?
+  0xFF9616 = nonzero if compressed data is queued for load/in progress.
+             bit 1 set after decompressor reads initial header and initializes
+             variables.
+             cleared when decompression complete.
+  0xFF961A = source address of data for dynamic decompression
+  0xFF93DB = number of queued vdp dma transfers??
+             in FF9B00? FF9800?
+  0xFF93DC = size of queued vdp dma transfers??
+  0xFF9622 = grp decmp: srcaddr??
+  0xFF9634 = grp decmp: srcaddr??
+  0xFFC620 = ? 4 special object slots that are not freely allocated?
+             these are updated, but not checked by the allocation routine
+  0xFFC6B6 = arle face?
+  0xFFC740 = ? 0x60-byte slots? 0x80 total? through 0xFFF740?
+             for e.g.scripts?
+             probably bytes 0-5 are the same for all objects, while 0x6-0x5F are
+             free-use
+    +0x00 = ? considered active if first byte nonzero?
+            bit 3 unset if a child object??
+    +0x01 = ?
+    +0x02 = pointer to update handler routine
+            this is provided as a param to the allocation routine
+            e.g. 0x48d20 for scripts
+    +0x06 = flags?
+            bit 7 = if set, auto-draw object using sprite definition
+                    corresponding to the type/subtype fields (+0x8/+0x9)
+    +0x07 = ? byte?
+    +0x08 = object type
+    +0x09 = object subtype
+    
+    for scripts:
+      +0x16 = ? long
+              for scripts, set to 0xB4FC0 in (initial) update routine
+      +0x22 = ?
+              checked by 0x123C, decremented if nonzero
+      +0x24 = ?
+              routine 0x122C clears this, then resets the update handler
+      +0x26 = if nonzero, frame delay counter decremented every update?
+      +0x28 = nametable addr of "base" text position?
+              e.g. 0xC884
+      +0x2A = once 0x26 times out, it's reset to this value
+      +0x2C = count of total font characters sent to VDP so far.
+              does not include spaces, which are special-cased.
+      +0x2E = ? param A0?
+      +0x32 = ? long
+      +0x38 = base "destination" -- e.g. 0x8780
+              add slot+0x2C, AND by 0x7FF, then shift left 5 to get
+              VRAM dst pos for next character's font data.
+              what do high 9 bits indicate?
+      +0x40 = source script data pointer
+      +0x4C = current nametable addr
+              4 added each time a character literal is handled.
+              e.g. 0xC884.
+      +0x4E = base nametable addr for current line of text.
+              starts same as +0x4C.
+              add 0x100 (2 nametable rows) for each linebreak?
+      +0x50 = number of bit in 0xFF86FE that represents this script?
+              0 = left?
+              1 = right/map label?
+              2 = center?
+      +0x51 = ? byte
+              same as +0x50, but in high nybble...?
+      +0x52 = ? byte
+              for multiple-choice selections, holds index of choice?
+      +0x53 = ? byte
+      +0x54 = pointer to array that the content of this string is written
+              to as it is rendered.
+              this is used to optimize VRAM usage by recycling characters
+              that have already been written.
+              memory pointer? -- e.g. FF85EA
+              
+  FFF81E = ?
+  FFF820 = length of "autoclose" delay?
+  FFF984 = 32-bit value: money (displayed value divided by 10;
+           all displayed values have a dummy zero)
+  FFF9EA = total number of exam points accumulated
+  
+GRAPHICS
+  see AE0.
+  monitor AFA for start, B2E for end of each pack (src = A2).
+  the compression is ultimately fairly simple, but the decompression code is
+  greatly complicated by various accommodations for asynchronous decompression.
+  
+  graphics are loaded as "packs" consisting of one or more pieces of data that
+  are loaded to the VDP.
+  92bc8 = title graphics pack.
+  format:
+    1b command
+       * if 0xFF, end of pack.
+       * if 0xFE, skip this entry.
+       * if bit 7 not set, use compression mode 0.
+         mode 0 decompresses to RAM rather than VRAM
+       * if bit 7 set, use compression mode 1 (lookback+uncompressed?)
+    1b word padding
+    2b source data address packed to a word.
+       decode as:
+         srcaddr = ((word << 8) & 0xFF8000) | (lowbyte & 0x7F)
+       so e.g. 0x0D22 becomes 0xD0022.
+    2b dstaddr
+       for mode 0, this targets RAM  0xFFXXXX.
+       for mode 1, this targets VRAM 0xXXXX.
+  
+  the souce data (header) for a pack entry looks like this:
+    1b cmpSettings
+        * if 0xFF, end of entry?
+        * bit 7 = compression submode (only applies in compression mode 1?
+                  set = lookback mode?
+                  unset = uncompressed mode?
+        * bit 6 = compression mode lock.
+          if set, the specified compression mode applies to all future blocks,
+          and there are no more headers?
+    1b userBlockSizeInPatterns
+        * if 0, treat as 0x100
+       every time this many decompressed patterns have been written,
+       read a new header (in this same format) from cmpSrcPtr.
+       BUT: if compression mode is locked, this does nothing and no new header
+            will ever be read.
+       BUT: there are default values for this depending on compression mode,
+            and if the user-specified value is lower than them, this is
+            ignored and the default used instead.
+            default values:
+              * mode 0:
+                - if bit 6 of FF8A51 unset, infinity?
+                  or always user size?
+                - otherwise, 0x10
+              * mode 1 submode 0 (uncompressed):
+                - if FF9630 zero AND bit 6 of FF8A51 set, 0x40
+                - otherwise, 0x20
+              * mode 1 submode 1 (lookback):
+                - if FF9630 zero AND bit 6 of FF8A51 set, 0x10
+                - otherwise, 0x20
+    2b updated dstpos??
+       add base vram address to this to get ???
+    2b compressed data address packed to a word.
+       decode as:
+         cmpSrcPtr = (grpHeaderPtr & 0xFF8000) | (word)
+    
+
+SCRIPT
+  for whatever stupid reason, the game uses these as a direct offset into the
+  jump table instead of multiplying by 4, so every op is a multiple of 4 and
+  the game is limited to 64 ops total.
+  
+  opcodes have no parameters unless explicitly listed.
+  
+  op 00/00: terminate script?
+  op 01/04: terminate all scripts??
+  op 02/08: ?
+  op 03/0C: delay
+         params:
+          - 2b delay in frames
+  op 04/10: ?
+  op 05/14: ?
+         does something with vdp control/data port
+  op 06/18: ?
+  op 07/1C: ?
+  op 08/20: ?
+  op 09/24: ?
+  op 0A+0B/28+2C: ?
+  op 0C/30: linebreak?
+  op 0D/34: end?
+  op 0E/38: ?
+  op 0F/3C: delay (0xF820) frames?
+  op 10/40: ?
+  op 11/44: prints 1-character-long ??? from 0xFF86AA
+         maybe number buffer?
+  op 12/48: prints 2-character-long number? from 0xFF86AA
+  op 13/4C: prints 5-character-long number? from 0xFF86AA
+  op 14/50: ?
+         params:
+          - 2b ?
+  op 15/54: ?
+         params:
+          - 2b ? written as byte to 0xFF86FA
+  op 16/58: ?
+         params:
+          - 2b ? written as byte to 0xFF86FB
+  op 17/5C: ?
+         params:
+          - 2b ? written as byte to 0xFF86FC
+  op 18/60: ?
+            does something and waits for a bit of 0xFFC627 to become clear
+  op 19/64: ?
+            does something and waits for a bit of 0xFFC627 to become clear
+  op 1A/68: ?
+  op 1B/6C: ?
+  op 1C/70: ?
+         complicated, but no params?
+  op 1D/74: prompt?
+         complicated, but no params?
+  op 1E/78: prints 7-character-long number? from 0xFF86AA
+  op 1F/7C: ?
+  op 20/80: ?
+  op 21/84: ?
+         params:
+          - 2b ? written to 0xFFC6B6 as word
+  op 22/88: ?
+         params:
+          - 2b ? written to 0xFFC6B6 as byte
+  op 23/8C: ?
+         params:
+          - 2b ? written to 0xFFC6B7 as byte
+  op 24/90: ? wait until something happens, then wait until something matches param
+         params:
+          - 2b ? compared as byte to 0xFF86FA
+  op 25/94: ?
+         params:
+          - 2b ? compared as byte to 0xFF86FB
+  op 26/98: ?
+         params:
+          - 2b ? compared as byte to 0xFF86FC
+  op 27/9C: ?
+         complicated, but no params?
+  op 28/A0: ?
+         complicated, but no params?
+  op 29/A4: ?
+         complicated, but no params?
+  op 2A/A8: ?
+         complicated, but no params?
+  op 2B/AC: ?
+         params:
+          - 2b ?
+               conditionally written as byte to (0xFF969A+(0xFF96C2))
+  op 2C/B0: ?
+  op 2D/B4: ?
+  op 2E/B8: clear text box (standard width)
+  op 2F/BC: ?
+  op 30/C0: ?
+  op 31/C4: ?
+        params:
+          - 2b ?
+  op 32/C8: ?
+         params:
+          - 2b ?
+  op 33/CC: ?
+  op 34+3F+40/D0+FC+"100": ?
+  op 35/D4: ? print something from memory?
+  op 36/D8: ? print something from memory?
+  op 37/DC: ? print something from memory?
+  op 38/E0: ? print something from memory?
+  op 39/E4: ? print something from memory?
+  op 3A/E8: ? print something from memory?
+  op 3B/EC: ? print something from memory?
+  op 3C/F0: ? print something from memory?
+  op 3D/F4: ?
+  op 3E/F8: nop
+  op 3F/FC: stop?
+  op "40"/"100": stop?
+  
+possible vwf memory:
+  FF0400?
+  ~FF2D00?
+  ~FF6CD0? ~FF7000?
+  ~FF8A80?
+  FF9C00?
+  ~FFC080?
+
+74688 = offset table for flea sprites
+  7473e = start of character state definitions
+  74766 = "defending" definition
+32600 = array of initial state data for ここにいる sub-objects.
+        see init code at 322FE
+
+6739A = sprite offset table for timers
+        first 10 entries are digits.
+        next is for あと and 秒 in escape.
+        next is for あと and 秒 in treasure hunt.
+
+6ad18 = table by object ID of pointers to sprite offset tables.
+        each entry in the pointed-to table corresponds to that object subtype.
+
+ffc800
+
+madou ondo:
+  - normal tiles for text are 4FF-5BF = 0xC1 = 193 total.
+  - if needed, DC00-DF7F and FC00-FF7F, the bottom margin of planes a/b,
+    are also available (+28 tiles each).
+  - an 8x16 font containing letters + needed punctuation for transcription
+    will be around 55 characters/110 tiles.
+    for an 8x8 font for the translation, add another 55 tiles, so 165 total.
+    we should be good, then...?
+
+"gan" object = B4 substate 3?
+  - sprite table at 0x9770c
+  - sprite table pointer at 0x6afe8
+
+3C45C = trigger momomo puyoman encounter
+
+TODO:
+  - not getting compass from camus??
+  - blackbox from some lipemco effect?
+
+DONE:
+  - faster text rendering
+  - graphics:
+    - compile logo
+    - title logo
+    - title menus
+    - intro sound effects
+    - "jiiin" when monster affected by bayoen
+    - panotty wah attack in-game
+    - panotty wah attack in credits (oh we got it for free, how nice)
+    - panotty fueeen after defeat
+    - panotty "poka" that probably isn't used
+    - flea stuff (here + defending + batankyuu)
+    - cockatrice "kokko" attack
+    - "byun" during demon escape after cockatrice defeat
+    - bayoen cast effect
+      - this is gonna be fun
+      - oh and it adds extra "ba"s if you use it with diacute
+    - treasure hunt/self-destruct timer
+    - carbuncle karaoke
+    - "ba" on bayoen door on 12f
+    - "hi" on heedon door
+    - "ji" on jugem door
+    - ending scroll
+    - ending seal
+    - "gaaaaan" in bad ending
+    - credits
+      - NO ONE WILL EVER KNOW HOW I SUFFERED FOR THIS
+  - fix all 7-char buffer uses:
+    - dynamic item names in dialogue
+    - monster capsules
+    - momomo storage
+  - add extra "symbols" from old font
+  - fix arrows
+  - cait sith plurality?
+  - capsule release messages
+  - problem with hscroll table after winning battle with capsule monster??
+    - caused by conflict with memory for vwf struct.
+      hopefully resolved; it shares with struct2 now, which shouldn't get
+      used during hscroll effects...
+  - double-ended quotes
+  - intro/ending text clear + formatting
+  - of item names, "hungry elephant" is too long to fit in the space
+    provided for the item combining menu.
+    (fire extinguisher is also too long but can't be combined.)
+    either shorten name or provide an abbreviated form for this specific
+    usage.
+    - done, but check that no items other than hungry elephant are affected
+  - combining items plurality/articles
+  - dropping items: "maybe you don't need [this] X"
+  - "the cait siths are defeated"
+  - map labels are not getting cleared before redrawing and can leave
+    artifacts under the right circumstances
+  - maybe see about clearing map labels before redrawing to hide
+    text redraw "flicker"
+    (tried it, this just makes it worse)
+  - erroneous line clears when mashing through (e.g.?) cait sith defeat
+    messages?
+    i haven't seen this again despite trying, so i'll mark it as done
+    for now...
+  - maybe add an extra, thinner font so we can fit "magic tower" on the map
+    labels
+    - shortened to "Tower Floor", which is exactly long enough to fit the
+      widest possible string ("Tower Floor B4F")
+  - fix all the lines in the ending that need additional boxes to fit
+  - also are item names on combination screen going to correct initial
+    vram position?
+    - dunno, apparently doesn't matter
+  - reinstate "wake up" dialogue box in intro?
+  - right-align arrows on spell command help
+  - check all lipemco effects for japanese text
+  - change prompt text to use 16px spaces
+  - recheck all text to make sure font tweaks haven't pushed anything into
+    a new box
+    - played the game again, everything's fine... probably
+  - make sure vwf struct memory is never used for anything else
+    (it's in the vicinity of the decompression lookback buffer,
+    but is it ever actually used?)
+    - didn't cause any problems during my playthrough
+  - cockatrice escape messages?
+    - uh, damn, was there some kind of problem with them?
+      what was i supposed to be reminding myself of??
+    - whatever this was, let's hope it's not a problem anymore!
+  - also check that thing about selling something for 10,000G
+    (moon pearl to pakista)
+  - space out quoted versions of item names if they span multiple lines?
+    - only one that needs it is "fire extinguisher"... does this look ok?
+  - check that puyoman 3-pack text (the proper one) -- is it used?
+  - nasu grave defeat message
+  - cait siths rocket + a-capsule capture = endless loop?
+  - lines can disappear in enemy defeat messages.
+    almost certain this can happen in original game too.
+    - fixed by removing the box clear command from the arle's victory message.
+      this means the enemy defeat message will always stick around until the
+      end of the battle.
+      though a change in behavior, i feel this is more than justified,
+      considering how inconsistently the text was displayed in the original
+      game.
+      enemy defeat messages have also had their [wait] commands removed
+      (all they did was allow the player to blank the text box out by
+      mashing buttons)
+
+
+8b32
+256c6
+244f2
+
+~488A2 = object collision detection?
+4898E = ?
+
+ffc724 = enemy state (word)? 0 if idle?
+ff88b6 = set to FF on successful a-capsule arrow strike?
+
+
+2643e

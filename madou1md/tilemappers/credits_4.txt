@@ -1,0 +1,28 @@
+#******************************************************************************
+# Credits page 4 generator script
+#******************************************************************************
+
+[Properties]
+palette=rsrc_raw/pal/credits.bin
+dest=out/grp/credits_4.bin
+loadAddr=0x780
+#minTiles=0x185
+maxTiles=0x80
+#blacklist=0x5C0-0x6DF 0x6FC-0x7DF
+
+#******************************************************************************
+# Main layout
+#******************************************************************************
+
+[Tilemap00]
+source=rsrc/credits/credits_4-0.png
+dest=out/maps/credits_4-0.bin
+priority=0
+palette=0
+
+[Tilemap01]
+source=rsrc/credits/credits_4-1.png
+dest=out/maps/credits_4-1.bin
+priority=0
+palette=0
+

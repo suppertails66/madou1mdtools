@@ -1,0 +1,34 @@
+
+// title scren sprite-based title screen menu prompts.
+// note: every character is a sprite, so be sure to
+// observe the 20-sprites-per-scanline limit for the
+// translated text.
+// spaces are not included in the character count.
+
+
+#STARTSCRIPT(-1)
+// すたぁとぼたんを押してね♪
+Press Start Button [musicnote]
+#ENDSCRIPT()
+#BREAK()
+
+#STARTSCRIPT(-1)
+// どこから　はじめるの？
+What do you want to do?
+#ENDSCRIPT()
+#BREAK()
+
+#STARTSCRIPT(-1)
+// どの日記を　はじめるの？
+From which journal?
+#ENDSCRIPT()
+#BREAK()
+
+#STARTSCRIPT(-1)
+// すきなものを　えらんでね★
+Pick whatever you like ★
+// this is the prompt for the "present" menu unlocked by
+// beating the game with 100 points
+#ENDSCRIPT()
+#BREAK()
+

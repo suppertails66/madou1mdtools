@@ -1,0 +1,366 @@
+
+//===========================================================
+// item names with articles attached,
+// for certain dialogues that need them
+//===========================================================
+
+#STARTSCRIPT(0xA092E)
+
+// アイテム袋
+an[br]
+Item Bag
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA093A)
+
+// 福袋
+a[br]
+Mystery Bag
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0940)
+
+// らっきょ
+[br]
+Veggies
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA094A)
+
+// ふくじんづけ
+[br]
+Pickles
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0958)
+
+// カレーライス
+[br]
+Curry Rice
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0966)
+
+// 激辛カレー
+[br]
+Spicy Curry
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0972)
+
+// 仙人酒
+[br]
+Wizard Wine
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA097A)
+
+// 魔導酒
+[br]
+Magic Liquor
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0982)
+
+// ももも酒
+[br]
+Momomo Sake
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA098C)
+
+// ちゃんぽん酒
+a[br]
+Cocktail
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA099A)
+
+// 竜の牙
+a[br]
+Dragon Fang
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA09A2)
+
+// 竜のウロコ
+a[br]
+Dragon Scale
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA09AE)
+
+// 竜の尻尾
+a[br]
+Dragon Tail
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA09B8)
+
+// 竜の角
+a[br]
+Dragon Horn
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA09C0)
+
+// いだてん草
+[br]
+Swift Herbs
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA09CC)
+
+// 毒消し草
+[br]
+Antidote Herbs
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA09D6)
+
+// ぷよまん
+a[br]
+Puyoman
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA09E0)
+
+// あんみん笛
+a[br]
+Drowsy Flute
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA09EC)
+
+// ばくはつ卵
+an[br]
+Egg Bomb
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA09F8)
+
+// 洪水壺
+a[br]
+Flood Vase
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A00)
+
+// すいとる象
+a[br]
+Hungry Elephant
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A0C)
+
+// セイレーンの失
+a[br]
+Siren's Arrow
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A1C)
+
+// 明かり玉
+a[br]
+Light Orb
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A26)
+
+// とうがらし
+a[br]
+Red Pepper
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A32)
+
+// ルビー
+a[br]
+Ruby
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A3A)
+
+// サファイア
+a[br]
+Sapphire
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A46)
+
+// エメラルド
+an[br]
+Emerald
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A52)
+
+// トパーズ
+a[br]
+Topaz
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A5C)
+
+// ダイヤモンド
+a[br]
+Diamond
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A6A)
+
+// くろしんじゅ
+a[br]
+Black Pearl
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A78)
+
+// ムーンストーン
+a[br]
+Moon Stone
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A88)
+
+// パイナップル
+a[br]
+Pineapple
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0A96)
+
+// 銀色リンゴ
+a[br]
+Silver Apple
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0AA2)
+
+// 黄金リンゴ
+a[br]
+Golden Apple
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0AAE)
+
+// 必殺玉
+a[br]
+Super Bomb
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0AB6)
+
+// 酸素の素
+an[br]
+Oxygen Gummy
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0AC0)
+
+// 防火スプレー
+a[br]
+Fire Extinguisher
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0ACE)
+
+// 壁の素
+a[br]
+Wall Panel
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0AD6)
+
+// Ａカプセル
+an[br]
+A-Capsule
+[kill]
+
+#ENDSCRIPT()
+
+#STARTSCRIPT(0xA0AE2)
+
+// 魔導メモ
+a[br]
+Sorcery Memo
+[kill]
+
+#ENDSCRIPT()
+
