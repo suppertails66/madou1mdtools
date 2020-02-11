@@ -249,6 +249,13 @@ freeMemoryStart equ vwfBuffer3Pos
 *   org $29DC0
 *   jmp puyoSpecialStuff
   
+  * use hardcoded lipemco effect number
+*   org $36902
+*   move.w #12,d0
+*   nop
+*   nop
+*   nop
+  
 
 *********************************************************************
 * New routines for safe SRAM access

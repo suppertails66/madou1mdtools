@@ -2651,13 +2651,39 @@ Carby Beam!
 // こうげきりょくを[br]
 // 貸してあげるわ」
 {I shall lend you some strength.}
-[delay]<$0096>
+
+// NOTE: this delay has been changed to fix a bug
+// which was probably introduced by the translation's slower
+// text rendering.
+// the original delay is just long enough that, if the enemy has
+// an attack queued for after the lipemco message ends, the [clearall]
+// will take effect immediately *after* that message starts printing.
+// this results in the top part of the message getting blanked out
+// while the rest prints normally.
+// by shortening this delay and making up the difference after the
+// clear occurs, we prevent this issue.
+// (this may only apply to the defense up/down messages, but i've changed
+// these too just in case)
+//
+// double NOTE: upon further examination, i'm fairly certain the
+// problem actually lies with the attack/defense decreased code
+// itself, which seems to "unlock" the enemy's actions too soon
+// compared to the other LIPEMCO effects.
+// well, i don't want to alter the timing of something gameplay-related,
+// so this will have to do.
+//[delay]<$0096>
+[delay]<$0094>
+
 [leftbox2]
 // こうげきりょくが[br]
 // パワーアップ！
 Attack increased!
 [op3C]
 [clearall]
+
+// NOTE: added due to bugfix described above
+[delay]<$0002>
+
 [end]
 
 #ENDSCRIPT()
@@ -2671,7 +2697,10 @@ Attack increased!
 // こうげきりょくを[br]
 // 借りるわね」
 {I shall borrow some strength.}
-[delay]<$0096>
+
+//[delay]<$0096>
+[delay]<$0094>
+
 [leftbox2]
 // こうげきりょくが[br]
 // パワーダウン。[br]
@@ -2679,6 +2708,10 @@ Attack increased!
 Attack decreased. Awww...
 [op3C]
 [clearall]
+
+// NOTE: added due to bugfix described above
+[delay]<$0002>
+
 [end]
 
 #ENDSCRIPT()
@@ -2692,13 +2725,20 @@ Attack decreased. Awww...
 // ぼうぎょりょくを[br]
 // 貸してやろう」
 {I shall lend you some protection.}
-[delay]<$0096>
+
+//[delay]<$0096>
+[delay]<$0094>
+
 [leftbox2]
 // ぼうぎょりょくが[br]
 // パワーアップ！
 Defense increased!
 [op3C]
 [clearall]
+
+// NOTE: added due to bugfix described above
+[delay]<$0002>
+
 [end]
 
 #ENDSCRIPT()
@@ -2712,7 +2752,10 @@ Defense increased!
 // ぼうぎょりょくを[br]
 // 借りるぞ」
 {I shall borrow some protection.}
-[delay]<$0096>
+
+//[delay]<$0096>
+[delay]<$0094>
+
 [leftbox2]
 // ぼうぎょりょくが[br]
 // パワーダウン。[br]
@@ -2720,6 +2763,10 @@ Defense increased!
 Defense decreased. Awww...
 [op3C]
 [clearall]
+
+// NOTE: added due to bugfix described above
+[delay]<$0002>
+
 [end]
 
 #ENDSCRIPT()
