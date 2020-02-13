@@ -251,7 +251,7 @@ freeMemoryStart equ vwfBuffer3Pos
   
   * use hardcoded lipemco effect number
 *   org $36902
-*   move.w #12,d0
+*   move.w #17,d0
 *   nop
 *   nop
 *   nop

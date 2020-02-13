@@ -2536,7 +2536,9 @@ The light covering you vanishes.
 [leftbox]
 // 今は使えない[br]
 // みたいだ。
-I don't think I can use it now.
+//I don't think I can use it now.
+
+I don't think I can use that now.
 [wait]
 
 [kill]
@@ -2608,6 +2610,8 @@ The monster flies off far away.
 [wait]
 
 [kill]
+// this seems like it should be used when warp vanishes an enemy,
+// but it isn't. - s
 
 #ENDSCRIPT()
 
@@ -2648,7 +2652,9 @@ I don't have enough magic for that! [sweat1]
 [leftbox]
 // 今は使えない[br]
 // みたいだ。
-I don't think I can use it now.
+//I don't think I can use it now.
+
+I don't think I can use that now.
 [wait]
 
 [kill]
@@ -2907,18 +2913,30 @@ a Golden Apple.[br]
 
 #STARTSCRIPT(0xA0580)
 
-[rightbox]
+// BUG: exposed due to removal of [clearall] from arle's "yaaaay" victory
+//      message: this does not use unique vram and will get overwritten
+//      with arle's victory message if left as-is.
+//[rightbox]
+[rightbox2]
 // まものは[br]
 // どこかに[br]
 // とんでいった。
 The monster flies off somewhere.
+
+// NOTE: added because this message doesn't get autocleared for some
+// reason, even though the next one does
+[delay]<$003A>
+[clear]
+
 [autoend]
 
 #ENDSCRIPT()
 
 #STARTSCRIPT(0xA05A6)
 
-[rightbox]
+// BUG: see previous message
+//[rightbox]
+[rightbox2]
 // まものは[br]
 // ならくの底に[br]
 // 落ちていった。
@@ -3144,7 +3162,9 @@ The monster runs away from some creepy guy.
 [leftbox]
 // 今は使えない[br]
 // みたいだ。
-I don't think I can use it now.
+//I don't think I can use it now.
+
+I don't think I can use that now.
 [wait]
 
 [kill]
@@ -5922,7 +5942,9 @@ It failed!
 [leftbox]
 // 今は使えない[br]
 // みたいだ。
-I don't think I can use it now.
+//I don't think I can use it now.
+
+I don't think I can use that now.
 [autoend]
 
 #ENDSCRIPT()
