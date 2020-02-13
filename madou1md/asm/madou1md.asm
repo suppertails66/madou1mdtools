@@ -701,6 +701,20 @@ sramOn  equ $01
   org $BFEA
   jmp aCapsuleHitDoubleCheck
   
+  **********************************
+  * satan despawn fix 1
+  **********************************
+  
+  org $2303E
+  jmp satanDespawnFix1
+  
+  **********************************
+  * satan despawn fix 2
+  **********************************
+  
+  org $2304E
+  jmp satanDespawnFix2
+  
   ********************************************************************
   * Graphics packs
   ********************************************************************
@@ -4786,9 +4800,39 @@ creditsRunnerClearTileId equ $0000
     move.b #$FF,$FFFF88B6
     jmp $BFF0
   
+  ********************************************************************
+  * in the true final boss battle, the game occasionally tries to
+  * check if the object slot it's operating on is the "special" enemy
+  * slot at FFC6E0, and does not despawn the object if so.
+  * but the check is bugged: it specifically checks if the target
+  * address is 0x00FFC6E0 as a long, when the address will often
+  * (always?) be formatted as the equivalent 0xFFFFC6E0.
+  * so if e.g. satan uses his HP drain attack, and the player uses
+  * a max-level ice storm, satan will be permanently despawned and
+  * the battle will never end.
+  *
+  * this occurs for two different cases, both covered below.
+  ********************************************************************
   
+  satanDespawnFix1:
+    * make up work
+    cmpa.l #$FFC6E0,a0
+    beq satanDespawnFix1_success
+      cmpa.l #$FFFFC6E0,a0
+      beq satanDespawnFix1_success
+        jmp killObj
+    satanDespawnFix1_success:
+    jmp $23422
   
-  
+  satanDespawnFix2:
+    * make up work
+    cmpa.l #$FFC6E0,a0
+    beq satanDespawnFix2_success
+      cmpa.l #$FFFFC6E0,a0
+      beq satanDespawnFix2_success
+        jmp $29B16
+    satanDespawnFix2_success:
+    jmp $23422
   
   
 *   puyoSpecialStuff:
