@@ -1260,8 +1260,11 @@ I-It's all over![br]
 // よぉし！[br]
 // 体力が[br]
 // 最大まで回復！
+//Alright![br]
+//Health fully restored!
+
 Alright![br]
-Health fully restored!
+You've got full health!
 [autoend]
 
 #ENDSCRIPT()
@@ -1272,8 +1275,11 @@ Health fully restored!
 // うんうん。[br]
 // 体力が[br]
 // ほとんど回復！
+//Oh yeah![br]
+//Restored tons of health!
+
 Oh yeah![br]
-Restored tons of health!
+You've got tons of health!
 [autoend]
 
 #ENDSCRIPT()
@@ -1283,7 +1289,9 @@ Restored tons of health!
 [leftbox]
 // 体力が[br]
 // たくさん回復。
-Restored a lot of health.
+//Restored a lot of health.
+
+You've got a lot of health.
 [autoend]
 
 #ENDSCRIPT()
@@ -1293,7 +1301,9 @@ Restored a lot of health.
 [leftbox]
 // 体力の[br]
 // 半分以上が回復。
-Restored over half health.
+//Restored over half health.
+
+You have over half health.
 [autoend]
 
 #ENDSCRIPT()
@@ -1304,7 +1314,9 @@ Restored over half health.
 // 体力、[br]
 // 半分ぐらい回復。[br]
 // ほっ。
-Restored about half health.
+//Restored about half health.
+
+You have about half health.
 [autoend]
 
 #ENDSCRIPT()
@@ -1314,7 +1326,9 @@ Restored about half health.
 [leftbox]
 // 体力が半分も[br]
 // 回復してなぁい。
-Restored less than half health...
+//Restored less than half health...
+
+You have less than half health...
 [autoend]
 
 #ENDSCRIPT()
@@ -1325,7 +1339,9 @@ Restored less than half health...
 // ちょっとだけ[br]
 // 体力回復。[br]
 // ふにぃ～。
-Restored just a little bit of health...
+//Restored just a little bit of health...
+
+You have just a little bit of health...
 [autoend]
 
 #ENDSCRIPT()
@@ -1336,7 +1352,9 @@ Restored just a little bit of health...
 // ほとんど[br]
 // 体力回復な～し。[br]
 // あよん。
-That barely restored any health at all!
+//That barely restored any health at all!
+
+You've barely got any health at all!
 [autoend]
 
 #ENDSCRIPT()
@@ -1485,8 +1503,11 @@ You have no magic left...[br]
 // やりぃ！[br]
 // 魔導力が[br]
 // 最大まで回復！
+//Woo-hoo![br]
+//Restored all magic!
+
 Woo-hoo![br]
-Restored all magic!
+You've got all your magic!
 [autoend]
 
 #ENDSCRIPT()
@@ -1497,8 +1518,11 @@ Restored all magic!
 // うん！[br]
 // 魔導力が[br]
 // ほとんど回復！
+//Yes![br]
+//Restored tons of magic!
+
 Yes![br]
-Restored tons of magic!
+You've got tons of magic!
 [autoend]
 
 #ENDSCRIPT()
@@ -1509,8 +1533,11 @@ Restored tons of magic!
 // よ～し。[br]
 // 魔導力、[br]
 // たくさん回復。
+//Alright![br]
+//Restored a lot of magic.
+
 Alright![br]
-Restored a lot of magic.
+You've got a lot of magic.
 [autoend]
 
 #ENDSCRIPT()
@@ -1521,7 +1548,9 @@ Restored a lot of magic.
 // 魔導力の[br]
 // 半分以上が[br]
 // 回復したよ。
-Restored over half magic.
+//Restored over half magic.
+
+You have over half magic.
 [autoend]
 
 #ENDSCRIPT()
@@ -1532,7 +1561,9 @@ Restored over half magic.
 // 魔導力、[br]
 // 半分ぐらい回復。[br]
 // ふぅ。
-Restored about half magic.
+//Restored about half magic.
+
+You have about half magic.
 [autoend]
 
 #ENDSCRIPT()
@@ -1542,7 +1573,9 @@ Restored about half magic.
 [leftbox]
 // 魔導力が半分も[br]
 // 回復してなぁい。
-Restored less than half magic...
+//Restored less than half magic...
+
+You have less than half magic...
 [autoend]
 
 #ENDSCRIPT()
@@ -1553,7 +1586,9 @@ Restored less than half magic...
 // 魔導力が[br]
 // ちょっぴり回復。[br]
 // はぁ～。
-Restored just a little bit of magic...
+//Restored just a little bit of magic...
+
+You have just a little bit of magic...
 [autoend]
 
 #ENDSCRIPT()
@@ -1564,7 +1599,9 @@ Restored just a little bit of magic...
 // 魔導力の回復が[br]
 // ほとんどないぃ…[br]
 // うにょん。
-That barely restored any magic at all!
+//That barely restored any magic at all!
+
+You barely have any magic at all!
 [autoend]
 
 #ENDSCRIPT()
@@ -1581,8 +1618,11 @@ That barely restored any magic at all!
 // 最大まで回復！[br]
 // 最高に幸せだ、[br]
 // ぼかぁ。
+//This is the best![br]
+//Fully restored both health and magic!
+
 This is the best![br]
-Fully restored both health and magic!
+You've got full health and magic!
 [autoend]
 
 #ENDSCRIPT()
@@ -1593,8 +1633,11 @@ Fully restored both health and magic!
 // 体力も魔導力も[br]
 // ほとんど回復！[br]
 // ふふふん。
+//Yesss![br]
+//Restored tons of health and magic!
+
 Yesss![br]
-Restored tons of health and magic!
+You've got tons of health and magic!
 [autoend]
 
 #ENDSCRIPT()
@@ -1604,7 +1647,9 @@ Restored tons of health and magic!
 [leftbox]
 // 体力と魔導力が[br]
 // たくさん回復。[br]
-Restored a lot of health and magic.
+//Restored a lot of health and magic.
+
+You've got a lot of health and magic.
 [autoend]
 
 #ENDSCRIPT()
@@ -1615,7 +1660,9 @@ Restored a lot of health and magic.
 // 体力も魔導力も[br]
 // 半分以上[br]
 // 回復したよ。
-Restored over half health and magic.
+//Restored over half health and magic.
+
+You have over half health and magic.
 [autoend]
 
 #ENDSCRIPT()
@@ -1626,7 +1673,9 @@ Restored over half health and magic.
 // 体力と魔導力が[br]
 // 半分ぐらい[br]
 // 回復したよ。
-Restored about half health and magic.
+//Restored about half health and magic.
+
+You have about half health and magic.
 [autoend]
 
 #ENDSCRIPT()
@@ -1637,7 +1686,9 @@ Restored about half health and magic.
 // 体力と魔導力、[br]
 // 半分も[br]
 // 回復してなぁい。
-Restored less than half health and magic...
+//Restored less than half health and magic...
+
+You have less than half health and magic...
 [autoend]
 
 #ENDSCRIPT()
@@ -1648,7 +1699,9 @@ Restored less than half health and magic...
 // 体力と魔導力、[br]
 // わずかに回復。[br]
 // う～～～
-Restored just a little bit of health and magic...
+//Restored just a little bit of health and magic...
+
+You have just a little bit of health and magic...
 [autoend]
 
 #ENDSCRIPT()
@@ -1659,7 +1712,9 @@ Restored just a little bit of health and magic...
 // 体力と魔導力、[br]
 // ほとんど[br]
 // 回復なぁ～し。
-That barely restored anything at all!
+//That barely restored anything at all!
+
+You barely have any health or magic!
 [autoend]
 
 #ENDSCRIPT()
