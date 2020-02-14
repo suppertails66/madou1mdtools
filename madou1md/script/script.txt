@@ -11628,7 +11628,8 @@ There's a message on the wall.
 // ÉJÉ~ÉÖ[br]
 // ÅuÉtÉbÅEÅEÅE[br]
 // ÇÊÇ§Ç‚Ç≠óàÇΩÇ©ÅB
-Camus: {Heh. You've made it.
+Camus:[br]
+{Heh. You've made it.
 [wait]
 
 // Ç–Ç≥ÇµÇ‘ÇËÇæÇ»ÅA[br]
@@ -16046,7 +16047,8 @@ Your exam isn't over yet, you know...}
 //Lala: {Oh my gosh![br]
 //How could that little witch do this to you?!
 
-Lala: {Oh my gosh!
+Lala:[br]
+{Oh my gosh!
 [wait]
 How could that little witch do this to you?!
 [wait]
@@ -16095,14 +16097,14 @@ What do you think you're doing?!}
 //Lala: {There's an inn upstairs. You obviously need some rest to recover from these //terrible injuries.
 //[delay]<$0096>
 
-Lala: {There's an[br]
+Lala:[br]
+{There's an[br]
 inn upstairs.[br]
-You obviously[br]
-need some rest
+You obviously
 [delay]<$0096>
 [clear]
 [rightbox2]
-to recover from these terrible injuries.
+need some rest to recover from these terrible injuries.
 [delay]<$0096>
 
 [clear]
@@ -16116,7 +16118,8 @@ Come. I'll take good care of you.}
 // Ç‚ÇﬂÇƒÇ≠ÇÍÇ•Å`Å`[br]
 // Å`Å`Å`Å`Å`Å`Å`Å`[br]
 // Å`Å`Å`Ç¡ÅIÅIÅIÅv
-Camus: {L-Let me gooo!!}
+Camus:[br]
+{L-Let me gooo!!}
 [delay]<$0078>
 [clear]
 [opCC]
