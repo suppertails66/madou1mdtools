@@ -7766,7 +7766,7 @@ He attacks with his short limbs.
 // ‚ªA[br]
 // ©•ª‚ª[br]
 // ‚à‚¦‚¾‚µ‚½B
-But he set himself on fire instead.
+...But he set himself on fire instead.
 [autoend]
 
 #ENDSCRIPT()
