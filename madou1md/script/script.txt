@@ -18863,9 +18863,22 @@ Buy?
 
 #STARTSCRIPT(0xADD0E)
 
+// BUG: this sync flag should have been set here instead of after the voice
+// clip and box open commands.
+// those take up enough time to allow the ms. eve object to start checking
+// the flag before it has been initialized.
+// thus, if the flag happens to have been left at 1 at the end of whatever
+// event the user last encountered, it will erroneously cause ms. eve
+// to leave before this script has finished, causing a freeze when the
+// game tries to wait for it to leave at the end of the script.
+[anim]<$0000>
+
 [voice50]<$004D>
 [openrightbox]
-[anim]<$0000>
+
+// removed to fix aforementioned bug
+//[anim]<$0000>
+
 [rightbox]
 // ÅuÇªÇ±ÇÃÇ†Ç»ÇΩÅA[br]
 // ì`ê‡ÇÃ[br]
