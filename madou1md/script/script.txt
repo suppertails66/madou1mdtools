@@ -4726,8 +4726,18 @@ Must. Absorb. Item.
 [leftbox]
 // Ç¢Ç¡ÇΩÇæÇ¡Ç´[br]
 // Ç‹Å[Ç∑ÅI
-I said I'd eat you last.[br]
-I lied!
+
+//I said I'd eat you last.[br]
+//I lied!
+// we got a complaint about this Commando and/or Simpsons reference.
+// it shows up every time you eat a Dragon Tail; Zenki noted
+// that he localized it as he did because he thought these lines
+// for eating were randomly selected, and empowered me to change it.
+// so now it's a dumb anime meme from a decade ago because hilariously,
+// it actually works for what we're doing here. - s
+
+Rub-a-dub-dub, thanks for the grub!
+
 [voice50]<$001B>
 [wait]
 
