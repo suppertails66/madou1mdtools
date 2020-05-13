@@ -4746,6 +4746,11 @@ Rub-a-dub-dub, thanks for the grub!
 // ÇœÇ≠Ç¡ÅB
 *nom*
 [voice50]<$0013>
+
+// BUG: this wait was not in the original game, even though
+// it probably should have been
+[wait]
+
 [kill]
 
 #ENDSCRIPT()
