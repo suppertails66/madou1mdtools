@@ -15,9 +15,6 @@ WLALINK="./wla-dx/binaries/wlalink"
 # Location of 68kasm, needed to build VWF hacks
 M68KASM="68kasm/68kasm"
 
-# Location of the KENS tool koscmp, needed to compress files
-#KOSCMP="../kens/koscmp"
-
 cp "$INROM" "$OUTROM"
 
 mkdir -p out
